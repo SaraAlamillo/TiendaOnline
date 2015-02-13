@@ -38,8 +38,13 @@ class Productos extends CI_Model {
      * @return object Listado de todos los datos de los productos destacados.
      */
     public function listarDestacados($categoria = NULL) {
+        $intervalo = [
+            "fecha_inicio <" => date("Y-m-d H:i:s"),
+            "fecha_fin >" => date("Y-m-d H:i:s")
+        ];
         $this->db->from('producto');
-        $this->db->join('destacado', 'producto.id = destacado.id');
+        $this->db->join('destacado', 'producto.id = destacado.producto');
+        $this->db->where($intervalo);
         if (!is_null($categoria)) {
             $this->db->where("destacado.id", $categoria);
         }

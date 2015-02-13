@@ -32,29 +32,11 @@ class Welcome extends CI_Controller {
         /* echo "<pre>";
           print_r($this->usuarios->ultimoUsuario());
           echo "</pre>"; */
+        echo "<pre>";
+          print_r($this->productos->listarDestacados());
+          echo "</pre>";
+       
 
-        require( BASEPATH . '../application/libraries/Smarty/Smarty.class.php');
-        $smarty = new Smarty;
-
-        $smarty->template_dir = BASEPATH . '../application/views/templates/';
-        $smarty->compile_dir = BASEPATH . '../application/views/templates_c/';
-        $smarty->config_dir = BASEPATH . '../application/views/configs/';
-        $smarty->cache_dir = BASEPATH . '../application/views/cache/';
-
-        $smarty->assign('name', 'Ned');
-
-        $smarty->display('home.tpl');
-    }
-
-    function forma1() {
-        $array = array('1' => 'a', '2' => 'b');
-        $this->mysmarty->view('home', array('array' => $array));
-    }
-
-    function forma2() {
-        $array = array('1' => 'a', '2' => 'b');
-        $this->mysmarty->assign('array', $array);
-        $this->mysmarty->display('home.tpl');
     }
 
 }
