@@ -33,7 +33,7 @@ class Welcome extends CI_Controller {
           print_r($this->usuarios->ultimoUsuario());
           echo "</pre>"; */
         echo "<pre>";
-          print_r($this->productos->listarDestacados());
+          print_r($this->usuarios->listarUsuario(7));
           echo "</pre>";
        
 

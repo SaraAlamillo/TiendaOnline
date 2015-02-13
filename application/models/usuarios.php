@@ -30,8 +30,23 @@ class Usuarios extends CI_Model {
         if (!is_null($clave)) {
             $datos['contrasenia'] = $clave;
         }
+        $datos['activo'] = 1;
         $this->db->where($datos);
         $resultado = $this->db->get("usuario");
+        if ($resultado->result()) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    /**
+     * Comprueba si un nombre de usuario está siendo utilizado por otro
+     * @param string $nombre Nombre a buscar
+     */
+    public function nombreLibre($nombre) {
+        $this->db->where('usuario', $nombre);
+        $resultado = $this->db->get("usuario");
+        
         if ($resultado->result()) {
             return TRUE;
         } else {
@@ -45,7 +60,11 @@ class Usuarios extends CI_Model {
      * @return object Datos del usuario
      */
     public function listarUsuario($id) {
-        $this->db->where("id", $id);
+        $where = [
+            "id" => $id,
+            "activo" => 1
+        ];
+        $this->db->where($where);
         $resultado = $this->db->get("usuario");
         return $resultado->row();
     }
@@ -84,7 +103,7 @@ class Usuarios extends CI_Model {
      * @param integer $id Identificador del usuario
      * @param array $datos Conjunto de datos nuevos que sustituirán a los antiguos.
      */
-    public function actualizarDatows($id, $datos) {
+    public function actualizarDatos($id, $datos) {
         $this->db->where("id", $id);
         $this->db->update("usuario", $datos);
     }
