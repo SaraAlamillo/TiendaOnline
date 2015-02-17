@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-02-04 16:38:48
+<?php /* Smarty version Smarty-3.1.16, created on 2015-02-17 19:18:51
          compiled from "application\views\home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2602554d23d08d07750-50356795%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '34b1fb65e675421b1e1ad9cea05f7ab607d00f5e' => 
     array (
       0 => 'application\\views\\home.tpl',
-      1 => 1423064148,
+      1 => 1424197131,
       2 => 'file',
     ),
     '2f8e48cf519b94f283095532e0b7015cfed14ff5' => 
     array (
       0 => 'application\\views\\master.tpl',
-      1 => 1423064148,
+      1 => 1424195828,
       2 => 'file',
     ),
   ),
@@ -21,41 +21,61 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'variables' => 
-  array (
-    'pageTitle' => 0,
-  ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.16',
   'unifunc' => 'content_54d23d08dd2989_81331522',
+  'variables' => 
+  array (
+    'tituloPagina' => 0,
+    'categorias' => 0,
+  ),
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_54d23d08dd2989_81331522')) {function content_54d23d08dd2989_81331522($_smarty_tpl) {?><!DOCTYPE html>
-    <head>
-        <title><?php echo $_smarty_tpl->tpl_vars['pageTitle']->value;?>
+<head>
+    <title><?php echo $_smarty_tpl->tpl_vars['tituloPagina']->value;?>
 </title>
-    </head>
-    <body>
-		
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+        <h1>Tienda Online</h1>
+    
+    
+        <?php echo $_smarty_tpl->tpl_vars['categorias']->value;?>
 
-	<h1>Home</h1>
-	<div id="lipsum">
-		<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id lacinia lectus. Integer in tellus sit amet nisi elementum dapibus. Pellentesque turpis sem, fermentum quis mattis vel, mollis eget dui. Mauris scelerisque libero cursus sapien cursus ac sollicitudin lectus rutrum. Praesent nec mauris nunc, luctus hendrerit leo. Proin eros ipsum, dictum eu rhoncus et, molestie at ante. Donec quis augue vel arcu malesuada dignissim eu non odio. Pellentesque malesuada cursus luctus. Pellentesque placerat est quis sem tincidunt facilisis. Cras id lacus fermentum urna molestie volutpat et ac sem. Suspendisse potenti. Aenean non nibh vitae neque ultricies posuere. In aliquet aliquet lectus sed placerat. Quisque ultricies, nisi et porttitor semper, quam tortor elementum quam, eu hendrerit nunc lorem ut ante.
-		</p>
-		<p>
-		Ut nisi est, congue ut egestas in, lacinia sit amet est. Vivamus leo augue, viverra vitae adipiscing eu, auctor ultrices justo. Vivamus sit amet purus quis eros gravida interdum at non dui. Curabitur pellentesque interdum diam in eleifend. Phasellus a ipsum sed ante pulvinar placerat. Morbi augue lectus, convallis quis facilisis in, adipiscing eget dui. In risus lacus, molestie sit amet eleifend id, iaculis vitae augue. Cras elementum, arcu at rhoncus molestie, orci libero feugiat ligula, lobortis consectetur turpis orci quis ligula. Phasellus velit ligula, feugiat a aliquet ut, lobortis a tellus. Duis lacus leo, cursus sed molestie id, elementum et urna. Cras pretium rhoncus cursus. Aliquam id augue a elit semper pulvinar pharetra id nulla. Curabitur at felis ligula, id lacinia lacus. Fusce dapibus gravida iaculis. Duis bibendum tempus accumsan. Nunc interdum, diam ac faucibus aliquam, elit lectus hendrerit urna, eu consectetur lorem quam sit amet quam.
-		</p>
-		<p>
-		Praesent in luctus felis. Nunc venenatis, nulla non commodo tristique, elit felis accumsan velit, at ornare est nunc ac sem. Etiam molestie eleifend imperdiet. Sed lacinia mi sit amet sem elementum tempus quis nec turpis. Maecenas malesuada, arcu ac blandit blandit, orci neque faucibus urna, nec auctor tellus massa vel turpis. Aliquam congue condimentum tellus ut porta. Aliquam sed dapibus turpis. Morbi fermentum augue id diam malesuada mattis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis eleifend purus, ut pretium nulla molestie a. Curabitur quis laoreet quam. Mauris facilisis nisi eget sem bibendum hendrerit.
-		</p>
-		<p>
-		Mauris egestas ultrices sem in sollicitudin. Vestibulum ac purus risus, vel pulvinar nibh. Aenean augue mi, consectetur id suscipit quis, gravida eget lectus. Phasellus sagittis luctus tellus, sit amet fermentum ligula lacinia eget. Proin mattis quam quis felis placerat vulputate. Quisque eget felis at odio adipiscing auctor. Phasellus porta venenatis tortor, non ultrices eros ornare ornare. Sed condimentum posuere elit, eget elementum nibh molestie ut. Quisque et diam ligula. Curabitur porttitor lectus velit. Nam vitae massa eu nibh iaculis consectetur. Nulla molestie est sit amet elit auctor convallis. Ut et elit lorem, sed iaculis metus. Morbi varius gravida tempor. Quisque arcu elit, tristique vitae venenatis ut, commodo sed augue. Donec vestibulum viverra pulvinar.
-		</p>
-		<p>
-		In rhoncus elementum dictum. In hac habitasse platea dictumst. Suspendisse id elit et nulla facilisis tristique quis a neque. Maecenas ut odio eget turpis porta congue. Nam elementum elementum gravida. Aliquam malesuada rutrum tellus, vel ultrices risus viverra vel. Praesent enim turpis, egestas at aliquet at, euismod id mauris. Aliquam erat volutpat. Quisque sapien turpis, iaculis nec auctor eu, eleifend id tellus. Nam venenatis leo ac est pharetra varius. Morbi sit amet ipsum lectus, rutrum tempor nibh. Quisque ut felis quam, vel scelerisque nulla. Suspendisse pharetra blandit massa a lobortis.
-		</p>
-	</div>
+    
+    
+    
+    <h2>Destacados</h2>
+    <ol>
+        <?php  $_smarty_tpl->tpl_vars['producto'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['producto']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['destacados']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['producto']->key => $_smarty_tpl->tpl_vars['producto']->value) {
+$_smarty_tpl->tpl_vars['producto']->_loop = true;
+?>
+            <li><?php echo $_smarty_tpl->tpl_vars['producto']->value->nombre;?>
+</li>
+            <?php } ?>
+    </ol>
 
+
+    <h2>Productos</h2>
+    <ol>
+        <?php  $_smarty_tpl->tpl_vars['producto'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['producto']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['productos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['producto']->key => $_smarty_tpl->tpl_vars['producto']->value) {
+$_smarty_tpl->tpl_vars['producto']->_loop = true;
+?>
+            <li><?php echo $_smarty_tpl->tpl_vars['producto']->value->nombre;?>
+</li>
+            <?php } ?>
+    </ol>
+
+
+
+    <p>Sara Alamillo Arroyo</p>
+    <p>Desarrollo Web en Entorno Servidor</p>
 			
-    </body>
+</body>
 </html><?php }} ?>

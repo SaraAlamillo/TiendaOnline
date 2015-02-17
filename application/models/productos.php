@@ -46,7 +46,7 @@ class Productos extends CI_Model {
         $this->db->join('destacado', 'producto.id = destacado.producto');
         $this->db->where($intervalo);
         if (!is_null($categoria)) {
-            $this->db->where("destacado.id", $categoria);
+            $this->db->where("producto.categoria", $categoria);
         }
         $resultado = $this->db->get();
         return $resultado->result();

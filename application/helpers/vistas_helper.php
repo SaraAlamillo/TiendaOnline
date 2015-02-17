@@ -34,12 +34,13 @@ if (!function_exists('creaListaDesplegable')) {
 
 if (!function_exists('creaLista')) {
 
-    function creaLista($datos, $camposDatos = ['desc' => 'nombre', 'valor' => 'id']) {
+    function creaLista($datos, $controlador, $camposDatos = ['desc' => 'nombre', 'valor' => 'id']) {
 	$html = "<ul>\n";
 
 	foreach ($datos as $dato) {
-	    // TODO: insertar enlaces href='{$dato->$camposDatos['valor']}'
-	    $html .= "<li><a href='index.php?id={$dato->$camposDatos['valor']}'>{$dato->$camposDatos['desc']}</a></li>\n";
+	    $html .= "<li>";
+            $html .= anchor("index.php/$controlador{$dato->$camposDatos['valor']}", $dato->$camposDatos['desc']);
+            $html .= "  </li>\n";
 	}
 
 	$html .= "</ul>\n";

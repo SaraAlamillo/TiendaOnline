@@ -6,16 +6,15 @@ if (!defined('BASEPATH'))
 class Site extends CI_Controller {
 
     public function index() {
-	if (isset($_GET['id'])) {
-	    $categoria = $_GET['id'];
-	} else {
-	    $categoria = NULL;
-	}
-	$this->load->helper("vistas");
+	$this->productos();
+    }
+    
+    public function productos($categoria = NULL) {
 	$this->data["tituloPagina"] = "Tienda";
-	$this->data["categorias"] = creaLista($this->productos->listarCategorias());
+	$this->data["categorias"] = creaLista($this->productos->listarCategorias(), "site/productos/");
 	$this->data["productos"] = $this->productos->listarProductos($categoria);
-	$this->load->view('master', $this->data);
+	$this->data["destacados"] = $this->productos->listarDestacados($categoria);
+	$this->load->view('home', $this->data);
     }
 
 }
