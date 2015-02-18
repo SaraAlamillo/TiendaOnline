@@ -34,12 +34,12 @@ if (!function_exists('creaListaDesplegable')) {
 
 if (!function_exists('creaLista')) {
 
-    function creaLista($datos, $controlador, $camposDatos = ['desc' => 'nombre', 'valor' => 'id']) {
+    function creaLista($datos, $controlador, $pagina = 0, $camposDatos = ['desc' => 'nombre', 'valor' => 'id']) {
 	$html = "<ul>\n";
 
 	foreach ($datos as $dato) {
 	    $html .= "<li>";
-            $html .= anchor("index.php/$controlador{$dato->$camposDatos['valor']}", $dato->$camposDatos['desc']);
+            $html .= anchor("index.php/{$controlador}{$dato->$camposDatos['valor']}/$pagina", $dato->$camposDatos['desc']);
             $html .= "  </li>\n";
 	}
 

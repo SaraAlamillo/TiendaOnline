@@ -36,8 +36,8 @@ class Productos extends CI_Model {
      * @param int $categoria Identificador de la categoría de la que se devolverán los productos.
      * @return object Listado de todos los datos de los productos.
      */
-    public function listarProductos($categoria = NULL, $paginacion = NULL) {
-	if (!is_null($categoria)) {
+    public function listarProductos($categoria = 0, $paginacion = NULL) {
+	if ($categoria != 0) {
 	    $this->db->where("categoria", $categoria);
 	}
 	if (is_null($paginacion)) {
@@ -62,7 +62,10 @@ class Productos extends CI_Model {
      * @param int $categoria Identificador de la categoría de la que se devolverán los productos destacados.
      * @return object Listado de todos los datos de los productos destacados.
      */
-    public function listarDestacados($categoria = NULL) {
+    public function listarDestacados($categoria = NULL, $paginacion = NULL) {
+        if (!is_null($paginacion)) {
+            $this->db->limit($paginacion["total"], $paginacion["inicio"]);
+        }
 	$intervalo = [
 	    "fecha_inicio <" => date("Y-m-d H:i:s"),
 	    "fecha_fin >" => date("Y-m-d H:i:s")
@@ -75,6 +78,15 @@ class Productos extends CI_Model {
 	}
 	$resultado = $this->db->get();
 	return $resultado->result();
+    }
+    
+    public function numTotalDestacados($categoria = NULL) {
+	if (!is_null($categoria)) {
+	    $this->db->where("categoria", $categoria);
+	}
+
+	$resultado = $this->db->get("destacado");
+	return $resultado->num_rows();
     }
 
     /**
