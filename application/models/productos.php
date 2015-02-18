@@ -15,18 +15,20 @@ class Productos extends CI_Model {
      * @return object Listado de todos los datos de las categorías.
      */
     public function listarCategorias() {
-        $resultado = $this->db->get("categoria");
-        return $resultado->result();
+	$resultado = $this->db->get("categoria");
+	return $resultado->result();
     }
+
     public function listarCategoria($id) {
 	$this->db->where("id", $id);
-        $resultado = $this->db->get("categoria");
-        return $resultado->row();
+	$resultado = $this->db->get("categoria");
+	return $resultado->row();
     }
+
     public function listarProducto($id) {
 	$this->db->where("id", $id);
-        $resultado = $this->db->get("producto");
-        return $resultado->row();
+	$resultado = $this->db->get("producto");
+	return $resultado->row();
     }
 
     /**
@@ -34,12 +36,25 @@ class Productos extends CI_Model {
      * @param int $categoria Identificador de la categoría de la que se devolverán los productos.
      * @return object Listado de todos los datos de los productos.
      */
-    public function listarProductos($categoria = NULL) {
-        if (!is_null($categoria)) {
-            $this->db->where("categoria", $categoria);
-        }
-        $resultado = $this->db->get("producto");
-        return $resultado->result();
+    public function listarProductos($categoria = NULL, $paginacion = NULL) {
+	if (!is_null($categoria)) {
+	    $this->db->where("categoria", $categoria);
+	}
+	if (is_null($paginacion)) {
+	    $resultado = $this->db->get("producto");
+	} else {
+	    $resultado = $this->db->get("producto", $paginacion["total"], $paginacion["inicio"]);
+	}
+	return $resultado->result();
+    }
+
+    public function numTotalProductos($categoria = NULL) {
+	if (!is_null($categoria)) {
+	    $this->db->where("categoria", $categoria);
+	}
+
+	$resultado = $this->db->get("producto");
+	return $resultado->num_rows();
     }
 
     /**
@@ -48,18 +63,18 @@ class Productos extends CI_Model {
      * @return object Listado de todos los datos de los productos destacados.
      */
     public function listarDestacados($categoria = NULL) {
-        $intervalo = [
-            "fecha_inicio <" => date("Y-m-d H:i:s"),
-            "fecha_fin >" => date("Y-m-d H:i:s")
-        ];
-        $this->db->from('producto');
-        $this->db->join('destacado', 'producto.id = destacado.producto');
-        $this->db->where($intervalo);
-        if (!is_null($categoria)) {
-            $this->db->where("producto.categoria", $categoria);
-        }
-        $resultado = $this->db->get();
-        return $resultado->result();
+	$intervalo = [
+	    "fecha_inicio <" => date("Y-m-d H:i:s"),
+	    "fecha_fin >" => date("Y-m-d H:i:s")
+	];
+	$this->db->from('producto');
+	$this->db->join('destacado', 'producto.id = destacado.producto');
+	$this->db->where($intervalo);
+	if (!is_null($categoria)) {
+	    $this->db->where("producto.categoria", $categoria);
+	}
+	$resultado = $this->db->get();
+	return $resultado->result();
     }
 
     /**
@@ -68,10 +83,10 @@ class Productos extends CI_Model {
      * @return integer Número de elementos que hay del producto
      */
     public function obtenerStock($id) {
-        $this->db->select("stock");
-        $this->db->where("id", $id);
-        $resultado = $this->db->get("producto");
-        return $resultado->row()->stock;
+	$this->db->select("stock");
+	$this->db->where("id", $id);
+	$resultado = $this->db->get("producto");
+	return $resultado->row()->stock;
     }
 
     /**
@@ -82,22 +97,22 @@ class Productos extends CI_Model {
      * @return boolean Devuelve el resultado de la operación: TRUE si ha ido todo correcto y FALSE en caso contrario
      */
     public function modificarStock($id, $operacion, $cantidad) {
-        if ($operacion == "+") {
-            $nuevoStock = $this->obtenerStock($id) + $cantidad;
-        } elseif ($operacion == "-") {
-            $nuevoStock = $this->obtenerStock($id) - $cantidad;
-        } else {
-            return FALSE;
-        }
-        
-        $this->db->where("id", $id);
-        $this->db->update("producto", ["stock" => $nuevoStock]);
+	if ($operacion == "+") {
+	    $nuevoStock = $this->obtenerStock($id) + $cantidad;
+	} elseif ($operacion == "-") {
+	    $nuevoStock = $this->obtenerStock($id) - $cantidad;
+	} else {
+	    return FALSE;
+	}
 
-        if ($this->obtenerStock($id) == $nuevoStock) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+	$this->db->where("id", $id);
+	$this->db->update("producto", ["stock" => $nuevoStock]);
+
+	if ($this->obtenerStock($id) == $nuevoStock) {
+	    return TRUE;
+	} else {
+	    return FALSE;
+	}
     }
 
 }
