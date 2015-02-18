@@ -18,6 +18,16 @@ class Productos extends CI_Model {
         $resultado = $this->db->get("categoria");
         return $resultado->result();
     }
+    public function listarCategoria($id) {
+	$this->db->where("id", $id);
+        $resultado = $this->db->get("categoria");
+        return $resultado->row();
+    }
+    public function listarProducto($id) {
+	$this->db->where("id", $id);
+        $resultado = $this->db->get("producto");
+        return $resultado->row();
+    }
 
     /**
      * Devuelve un listado de productos. Si se pasa la categoría, se devuelven los productos de dicha categoría; en caso de no haber categoría, se devuelven todos los productos de la base de datos.

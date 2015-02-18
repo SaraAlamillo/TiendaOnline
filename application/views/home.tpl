@@ -1,19 +1,24 @@
 {extends 'master.tpl'}
 
 {block name=productos}
-    <h2>Productos</h2>
-    <ol>
+    <table border="1">
+	<tr>
+	    <td colspan="2">{$catActual}</td>
+	</tr>
         {foreach from=$productos item=producto}
-            <li>{$producto->nombre}</li>
-            {/foreach}
-    </ol>
-{/block}
-
-{block name=destacados}
-    <h2>Destacados</h2>
-    <ol>
-        {foreach from=$destacados item=producto}
-            <li>{$producto->nombre}</li>
-            {/foreach}
-    </ol>
+            <tr>
+		<td><img src="{$imagenesDir}/productos/{$producto->imagen}" width="100px" /></td>
+		<td>
+		    {$producto->nombre} <br />
+		    Precio: 
+		    {if $producto->descuento ne 0}
+		<strike>{$producto->precio}</strike> <b>{$producto->descuento}</b>
+		{else}
+		    {$producto->precio} 
+		{/if}
+	    €
+	</td>
+    </tr>
+{/foreach}
+</table>
 {/block}
