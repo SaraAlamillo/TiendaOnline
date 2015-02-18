@@ -20,8 +20,7 @@ class Principal extends CI_Controller {
         
         //Creamos la lista de categorías para el menú
         $this->data["categorias"] = creaLista($this->productos->listarCategorias(), "principal/mostrarProductos/", $pagina);
-        
-        
+       
         //Guardamos el directorio de imágenes
         $this->data["imagenesDir"] = base_url() . "assets/img";
         
@@ -29,6 +28,7 @@ class Principal extends CI_Controller {
         $config['base_url'] = site_url('index.php/principal/index/' . $categoria . "/");
         $config['per_page'] = self::maxPorPagina;
         $config['total_rows'] = $this->productos->numTotalProductos($categoria);
+        $config['uri_segment'] = 4;
         
         $this->pagination->initialize($config);
         
